@@ -8,6 +8,7 @@ const boredomEl = document.getElementById('boredom')
 const nameEl = document.getElementById('name')
 const ageEl = document.getElementById('age')
 const enteredName = prompt("enter name")
+const imageEl = document.querySelector('img')
 
 //Classes
 
@@ -19,19 +20,18 @@ class Character {
         this.sleepinessLevel = sleepinessLevel
         this.boredomLevel = boredomLevel
         this.isAlive = isAlive
+        this.interval = null
+        this.interval2 = null
+        this.sleepInterval = null
     }
 }
 
 //Player object
-const player = new Character
-player.age = 0
-player.hungerLevel = 0;
-player.sleepinessLevel = 0;
-player.boredomLevel = 0;
-player.isAlive = true;
+const player = new Character(enteredName, 0,0,0,0,true,null)
+
 let count = 0
-let interval = null
-console.log(player)
+
+
 
 // E V E N T L I S T E N E R S 
 
@@ -43,7 +43,7 @@ entertainEl.addEventListener('click', handleEntertainClick)
 
 function setCharacterName(){
     nameEl.textContent = enteredName
-    interval = setInterval(function (){
+    player.interval = setInterval(function (){
         count++; 
         if (count % 5 === 0){
             player.age++
@@ -64,9 +64,19 @@ function handleFeedClick(){
     
 }
 function handleSleepClick(){
+    let sleepCount = 0
+    player.sleepInterval = setInterval(function(){
+        sleepCount++
+        imageEl.src ="images/4610FD2C-EE4A-425E-9351-E75B848F9C38_1_105_c.jpeg"
+        if(sleepCount === 3){
+            clearInterval(player.sleepInterval)
+            imageEl.src = "images/5A953C37-B39A-43F4-878C-27D6B1091E0D_1_105_c.jpeg"
+        }
+    },500)
     player.sleepinessLevel = player.sleepinessLevel -1
     sleepinessEl.textContent = 'Sleepiness: ' + player.sleepinessLevel
     increaseBoredom()
+
 }
 function handleEntertainClick(){
     player.boredomLevel--
@@ -89,21 +99,39 @@ function increaseBoredom(){
 }
 function evaluateCharacter(){
     let count2 = 0
-    interval2 = setInterval(function (){
+    player.interval2 = setInterval(function (){
         count2++;
             if(player.hungerLevel >=10 || player.sleepinessLevel>=10 || player.boredomLevel>=10){
                 console.log("dead")
                 nameEl.textContent = `${enteredName} has died at ${player.age}`
-                clearInterval(interval2)
-                clearInterval(interval)
-            // } else if (
-            //     player.age > 2 
-            // ) {
-            //     window.location.href = "/Users/gregdanko/sei/w3/project_0/test.html";
-            }
-        },100)
-    }
+                imageEl.src = "images/8EF39706-F74C-4D24-BE7D-24DBAA65C255_1_105_c.jpeg"
 
+                clearInterval(player.interval2)
+                clearInterval(player.interval)
+            } 
+        
+    },100)
+}
+function advanceLevel(){
+    //document.create element
+    //dom ref new element.append element
+    //player = new Character, will delete old player and add new one, inherit old stuff, player.name = var 
+
+
+
+}
+
+
+// function sleepAnimation(){
+//     player.sleepInterval = setInterval(function(){
+//         sleepCount++
+//         imageEl.src ="images/4610FD2C-EE4A-425E-9351-E75B848F9C38_1_105_c.jpeg"
+//         if(sleepCount === 3){
+//             clearInterval(player.sleepInterval)
+//             imageEl.src = "images/5A953C37-B39A-43F4-878C-27D6B1091E0D_1_105_c.jpeg"
+//         }
+//     },500)
+// }
 
 //Start the game
 setCharacterName()
