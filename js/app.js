@@ -9,6 +9,7 @@ const nameEl = document.getElementById('name')
 const ageEl = document.getElementById('age')
 const enteredName = prompt("enter name")
 const imageEl = document.querySelector('img')
+const gumEl = document.getElementById('gum')
 
 //Classes
 
@@ -24,6 +25,8 @@ class Character {
         this.interval2 = null
         this.sleepInterval = null
         this.eatInterval = null
+        this.lev2Interval = null
+        this.gumInterval = null
         
     }
 }
@@ -32,11 +35,13 @@ class Character {
 const player = new Character(enteredName, 0,0,0,0,true,null)
 
 let count = 0
+defaultImage = "images/resting.jpeg"
 // E V E N T L I S T E N E R S 
 
 feedEl.addEventListener('click', handleFeedClick)
 sleepEl.addEventListener('click', handleSleepClick)
 entertainEl.addEventListener('click', handleEntertainClick)
+gumEl.addEventListener('click',handleChewGumClick)
 
 // F U N C T I O N S
 
@@ -94,25 +99,24 @@ function evaluateCharacter(){
     let count2 = 0
     player.interval2 = setInterval(function (){
         count2++;
-            if(player.hungerLevel >=10 || player.sleepinessLevel>=10 || player.boredomLevel>=10){
-                console.log("dead")
+            if(player.hungerLevel >=5 || player.sleepinessLevel>=5 || player.boredomLevel>=5){
+                console.log("dead ")
                 nameEl.textContent = `${enteredName} has died at ${player.age}`
-                imageEl.src = "images/dead.jpeg"
+                defaultImage="images/dead.jpeg"
+                imageEl.src = defaultImage
 
                 clearInterval(player.interval2)
                 clearInterval(player.interval)
             } 
-        
-    },100)
+    },500)
 }
-function advanceLevel(){
+function handleChewGumClick(){
+    gumAnimation()
+}
     //document.create element
     //dom ref new element.append element
-    //player = new Character, will delete old player and add new one, inherit old stuff, player.name = var 
+    //player = new Character, will delete old player and add new one, inherit old stuff, player.name = var
 
-
-
-}
 
 
 function sleepAnimation(){
@@ -122,12 +126,10 @@ function sleepAnimation(){
         imageEl.src ="images/sleep.jpeg"
         if(sleepCount === 3){
             clearInterval(player.sleepInterval)
-            imageEl.src = "images/resting.jpeg"
+            imageEl.src = defaultImage
         }
     },500)
 }
-
-
 function eatAnimation(){
     let eatCount = 0
     player.eatInterval = setInterval(function(){
@@ -145,13 +147,11 @@ function eatAnimation(){
         }else if (eatCount ===5){
             imageEl.src = "images/eat5.jpeg"
         }else if (eatCount ===6){
-            imageEl.src = "images/resting.jpeg"
+            imageEl.src = defaultImage
             clearInterval(player.eatInterval)
         }
     },500)
 }
-
-
 function funAnimation(){
     let funCount = 0
     player.funInterval = setInterval(function(){
@@ -159,7 +159,19 @@ function funAnimation(){
         imageEl.src ="images/jamming.jpeg"
         if(funCount === 3){
             clearInterval(player.funInterval)
-            imageEl.src = "images/resting.jpeg"
+            imageEl.src = defaultImage
+        }
+    },500)
+}
+
+function lev2Animation(){
+    let lev2Count = 0
+    player.lev2Interval = setInterval(function(){
+        lev2Count++
+        imageEl.src ="images/Level2.jpeg"
+        if(lev2Count === 3){
+            clearInterval(player.lev2Interval)
+            imageEl.src = defaultImage
         }
     },500)
 }
@@ -168,5 +180,27 @@ function funAnimation(){
 setCharacterName()
 evaluateCharacter()
 
+function gumAnimation(){
+    let gumCount = 0
+    player.gumInterval = setInterval(function(){
+        gumCount++
+        if(gumCount === 1){
+            imageEl.src = "images/gum1.jpeg"
+        }
+        else if (gumCount ===2){
+            imageEl.src = "images/gum2.jpeg"
+        }
+        else if (gumCount ===3){
+            imageEl.src = "images/gum3.jpeg"
+        }else if (gumCount ===4){
+            imageEl.src = "images/gum4.jpeg"
+        }else if (gumCount ===5){
+            imageEl.src = "images/gum5.jpeg"
+        }else if (gumCount ===6){
+            imageEl.src = defaultImage
+            clearInterval(player.gumInterval)
+        }
+    },500)
+}
 
 
