@@ -8,13 +8,36 @@ const boredomEl = document.getElementById('boredom')
 const nameEl = document.getElementById('name')
 const ageEl = document.getElementById('age')
 const enteredName = prompt("enter name")
+const characterImageEl = document.getElementById('character-box').style.background-image
 
-let age = 0
-let hungerLevel = 0;
-let sleepinessLevel = 0;
-let boredomLevel = 0;
+
+
+//Classes
+
+class Character {
+    constructor(name, age, hungerLevel, sleepinessLevel, boredomLevel){
+        this.name = name
+        this.age = age
+        this.hungerLevel = hungerLevel
+        this.sleepinessLevel = sleepinessLevel
+        this.boredomLevel = boredomLevel
+        this.isAlive = isAlive
+    }
+}
+
+
+
+const player = new Character
+
+
+player.age = 0
+player.hungerLevel = Math.random(Math.floor * 10);
+player.sleepinessLevel = Math.random(Math.floor * 10);
+player.boredomLevel = Math.random(Math.floor * 10);
+player.isAlive = true;
 let count = 0
 let interval = null
+console.log(player)
 
 // E V E N T L I S T E N E R S 
 
@@ -28,66 +51,76 @@ function setCharacterName(){
     nameEl.textContent = enteredName
     interval = setInterval(function (){
         count++; 
-        if (count % 15 === 0){
-            age++
-            ageEl.textContent = 'Age: ' + age
+        if (count % 5 === 0){
+            player.age++
+            ageEl.textContent = 'Age: ' + player.age
             increaseHunger()
             increaseBoredom()
             increaseSleepiness()
-            evaluateCharacter()
+            
             
             
         }
     },1000)
-
-
 }
 
 
 function handleFeedClick(){
-    hungerLevel--
-    hungerEl.textContent = 'Hunger: ' + hungerLevel
+    player.hungerLevel--
+    hungerEl.textContent = 'Hunger: ' + player.hungerLevel
     increaseSleepiness()
     
 }
 function handleSleepClick(){
-    sleepinessLevel = sleepinessLevel -1
-    sleepinessEl.textContent = 'Sleepiness: ' + sleepinessLevel
+    player.sleepinessLevel = player.sleepinessLevel -1
+    sleepinessEl.textContent = 'Sleepiness: ' + player.sleepinessLevel
     increaseBoredom()
 }
 function handleEntertainClick(){
-    boredomLevel--
-    boredomEl.textContent = 'Boredom: ' + boredomLevel
+    player.boredomLevel--
+    boredomEl.textContent = 'Boredom: ' + player.boredomLevel
     increaseHunger()
 }
 function increaseHunger(){
-    hungerLevel++
-    hungerEl.textContent = 'Hunger: ' + hungerLevel
+    player.hungerLevel++
+    hungerEl.textContent = 'Hunger: ' + player.hungerLevel
 }
 function increaseSleepiness(){
-    sleepinessLevel++
-    sleepinessEl.textContent = 'Sleepiness: ' + sleepinessLevel
+    player.sleepinessLevel++
+    sleepinessEl.textContent = 'Sleepiness: ' + player.sleepinessLevel
 }
 function increaseBoredom(){
-    boredomLevel++
-    boredomEl.textContent = 'Boredom: ' + boredomLevel
+    player.boredomLevel++
+    boredomEl.textContent = 'Boredom: ' + player.boredomLevel
+    
 
 }
 
 function evaluateCharacter(){
-    if(hungerLevel >10 || sleepinessLevel>10 || boredomLevel>10){
-        console.log("dead")
-}}
+    let count2 = 0
+    interval2 = setInterval(function (){
+        count2++;
+            if(player.hungerLevel >=10 || player.sleepinessLevel>=10 || player.boredomLevel>=10){
+                console.log("dead")
+                nameEl.textContent = `${enteredName} has died at ${age}`
+                
+
+                
+                clearInterval(interval2)
+                clearInterval(interval)
+            }
+        },100)
+    }
 
 
-// class Character {
-//     constructor(name, age, hungerLevel, sleepinessLevel, boredomLevel)
-//     this.name = name
-//     this.age = age
-//     this.hungerLevel = hungerLevel
-//     this.sleepinessLevel = sleepinessLevel
-//     this.boredomLevel = boredomLevel
-// }
+ 
+function levelTwoStart(){
+    if (player.age === 2){
+        window.open = 'test.html'
+    }
+}
+
+
 
 
 
@@ -107,3 +140,7 @@ function evaluateCharacter(){
 
 //Start the game
 setCharacterName()
+evaluateCharacter()
+levelTwoStart()
+
+

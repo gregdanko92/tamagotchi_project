@@ -4,7 +4,6 @@ background-color: lightgray;
 display: flex;
 flex-flow: column;
 }
-
 #stats {
     display:flex;
     flex-flow: row wrap;
@@ -36,7 +35,6 @@ flex-flow: column;
     display: flex;
     flex-flow: row wrap;
     text-align: center;
-
 }
 h1 {
     text-align: center;
@@ -45,13 +43,14 @@ h1 {
 }
 #character-box {
     background-color:whitesmoke;
+    
     align-items: center;
     text-align: center;
     box-sizing: border-box;
     height:500px;
     width: 50%;
     margin: 30px auto ;
-    
+
 }
 button {
     margin: auto;
@@ -75,5 +74,10 @@ button:hover {
 button:active{
     position:relative;
 	top:1px;
+}
+
+img {
+    height:500px;
+    width:100%;
 }
 
