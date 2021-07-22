@@ -8,14 +8,11 @@ const boredomEl = document.getElementById('boredom')
 const nameEl = document.getElementById('name')
 const ageEl = document.getElementById('age')
 const enteredName = prompt("enter name")
-const characterImageEl = document.getElementById('character-box').style.background-image
-
-
 
 //Classes
 
 class Character {
-    constructor(name, age, hungerLevel, sleepinessLevel, boredomLevel){
+    constructor(name, age, hungerLevel, sleepinessLevel, boredomLevel,isAlive){
         this.name = name
         this.age = age
         this.hungerLevel = hungerLevel
@@ -25,15 +22,12 @@ class Character {
     }
 }
 
-
-
+//Player object
 const player = new Character
-
-
 player.age = 0
-player.hungerLevel = Math.random(Math.floor * 10);
-player.sleepinessLevel = Math.random(Math.floor * 10);
-player.boredomLevel = Math.random(Math.floor * 10);
+player.hungerLevel = 0;
+player.sleepinessLevel = 0;
+player.boredomLevel = 0;
 player.isAlive = true;
 let count = 0
 let interval = null
@@ -63,8 +57,6 @@ function setCharacterName(){
         }
     },1000)
 }
-
-
 function handleFeedClick(){
     player.hungerLevel--
     hungerEl.textContent = 'Hunger: ' + player.hungerLevel
@@ -95,52 +87,27 @@ function increaseBoredom(){
     
 
 }
-
 function evaluateCharacter(){
     let count2 = 0
     interval2 = setInterval(function (){
         count2++;
             if(player.hungerLevel >=10 || player.sleepinessLevel>=10 || player.boredomLevel>=10){
                 console.log("dead")
-                nameEl.textContent = `${enteredName} has died at ${age}`
-                
-
-                
+                nameEl.textContent = `${enteredName} has died at ${player.age}`
                 clearInterval(interval2)
                 clearInterval(interval)
+            // } else if (
+            //     player.age > 2 
+            // ) {
+            //     window.location.href = "/Users/gregdanko/sei/w3/project_0/test.html";
             }
         },100)
     }
 
 
- 
-function levelTwoStart(){
-    if (player.age === 2){
-        window.open = 'test.html'
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Start the game
 setCharacterName()
 evaluateCharacter()
-levelTwoStart()
+
 
 
