@@ -23,6 +23,8 @@ class Character {
         this.interval = null
         this.interval2 = null
         this.sleepInterval = null
+        this.eatInterval = null
+        
     }
 }
 
@@ -30,9 +32,6 @@ class Character {
 const player = new Character(enteredName, 0,0,0,0,true,null)
 
 let count = 0
-
-
-
 // E V E N T L I S T E N E R S 
 
 feedEl.addEventListener('click', handleFeedClick)
@@ -58,27 +57,21 @@ function setCharacterName(){
     },1000)
 }
 function handleFeedClick(){
+    eatAnimation()
     player.hungerLevel--
     hungerEl.textContent = 'Hunger: ' + player.hungerLevel
     increaseSleepiness()
     
 }
 function handleSleepClick(){
-    let sleepCount = 0
-    player.sleepInterval = setInterval(function(){
-        sleepCount++
-        imageEl.src ="images/4610FD2C-EE4A-425E-9351-E75B848F9C38_1_105_c.jpeg"
-        if(sleepCount === 3){
-            clearInterval(player.sleepInterval)
-            imageEl.src = "images/5A953C37-B39A-43F4-878C-27D6B1091E0D_1_105_c.jpeg"
-        }
-    },500)
+    sleepAnimation()
     player.sleepinessLevel = player.sleepinessLevel -1
     sleepinessEl.textContent = 'Sleepiness: ' + player.sleepinessLevel
     increaseBoredom()
 
 }
 function handleEntertainClick(){
+    funAnimation()
     player.boredomLevel--
     boredomEl.textContent = 'Boredom: ' + player.boredomLevel
     increaseHunger()
@@ -104,7 +97,7 @@ function evaluateCharacter(){
             if(player.hungerLevel >=10 || player.sleepinessLevel>=10 || player.boredomLevel>=10){
                 console.log("dead")
                 nameEl.textContent = `${enteredName} has died at ${player.age}`
-                imageEl.src = "images/8EF39706-F74C-4D24-BE7D-24DBAA65C255_1_105_c.jpeg"
+                imageEl.src = "images/dead.jpeg"
 
                 clearInterval(player.interval2)
                 clearInterval(player.interval)
@@ -122,16 +115,54 @@ function advanceLevel(){
 }
 
 
-// function sleepAnimation(){
-//     player.sleepInterval = setInterval(function(){
-//         sleepCount++
-//         imageEl.src ="images/4610FD2C-EE4A-425E-9351-E75B848F9C38_1_105_c.jpeg"
-//         if(sleepCount === 3){
-//             clearInterval(player.sleepInterval)
-//             imageEl.src = "images/5A953C37-B39A-43F4-878C-27D6B1091E0D_1_105_c.jpeg"
-//         }
-//     },500)
-// }
+function sleepAnimation(){
+    let sleepCount = 0
+    player.sleepInterval = setInterval(function(){
+        sleepCount++
+        imageEl.src ="images/sleep.jpeg"
+        if(sleepCount === 3){
+            clearInterval(player.sleepInterval)
+            imageEl.src = "images/resting.jpeg"
+        }
+    },500)
+}
+
+
+function eatAnimation(){
+    let eatCount = 0
+    player.eatInterval = setInterval(function(){
+        eatCount++
+        if(eatCount === 1){
+            imageEl.src = "images/eat1.jpeg"
+        }
+        else if (eatCount ===2){
+            imageEl.src = "images/eat2.jpeg"
+        }
+        else if (eatCount ===3){
+            imageEl.src = "images/eat3.jpeg"
+        }else if (eatCount ===4){
+            imageEl.src = "images/eat4.jpeg"
+        }else if (eatCount ===5){
+            imageEl.src = "images/eat5.jpeg"
+        }else if (eatCount ===6){
+            imageEl.src = "images/resting.jpeg"
+            clearInterval(player.eatInterval)
+        }
+    },500)
+}
+
+
+function funAnimation(){
+    let funCount = 0
+    player.funInterval = setInterval(function(){
+        funCount++
+        imageEl.src ="images/jamming.jpeg"
+        if(funCount === 3){
+            clearInterval(player.funInterval)
+            imageEl.src = "images/resting.jpeg"
+        }
+    },500)
+}
 
 //Start the game
 setCharacterName()
