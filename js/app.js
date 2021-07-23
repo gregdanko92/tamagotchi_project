@@ -10,6 +10,8 @@ const ageEl = document.getElementById('age')
 const enteredName = prompt("enter name")
 const imageEl = document.querySelector('img')
 const gumEl = document.getElementById('gum')
+const actionsEl =document.getElementById('actions')
+const statsEl = document.getElementById('stats')
 
 //Classes
 
@@ -55,9 +57,6 @@ function setCharacterName(){
             increaseHunger()
             increaseBoredom()
             increaseSleepiness()
-            
-            
-            
         }
     },1000)
 }
@@ -93,11 +92,25 @@ function increaseBoredom(){
     player.boredomLevel++
     boredomEl.textContent = 'Boredom: ' + player.boredomLevel
     
-
 }
 function evaluateCharacter(){
-    let count2 = 0
+    if (player.age === 1){
+        var workButton = document.createElement('button')
+    //create text node for the text
+    var workText = document.createTextNode('Work')
+    //arrach new trest to new element
+    workButton.appendChild(workText)
+    //set the position on the page by creating a new var for the positon
+    actionsEl.appendChild(workButton)
+
+    var moneyMetric = document.createElement('div')
+    var moneyText = document.createTextNode('Money: ')
+    moneyMetric.appendChild(moneyText)
+    moneyMetric.setAttribute('class', 'substat')
+    statsEl.appendChild(moneyMetric)
+}
     player.interval2 = setInterval(function (){
+        let count2 = 0
         count2++;
             if(player.hungerLevel >=5 || player.sleepinessLevel>=5 || player.boredomLevel>=5){
                 console.log("dead ")
@@ -108,16 +121,13 @@ function evaluateCharacter(){
                 clearInterval(player.interval2)
                 clearInterval(player.interval)
             } 
+            
     },500)
 }
+    
 function handleChewGumClick(){
     gumAnimation()
 }
-    //document.create element
-    //dom ref new element.append element
-    //player = new Character, will delete old player and add new one, inherit old stuff, player.name = var
-
-
 
 function sleepAnimation(){
     let sleepCount = 0
@@ -169,17 +179,12 @@ function lev2Animation(){
     player.lev2Interval = setInterval(function(){
         lev2Count++
         imageEl.src ="images/Level2.jpeg"
-        if(lev2Count === 3){
-            clearInterval(player.lev2Interval)
+        if(lev2Count === 1){
             imageEl.src = defaultImage
+            clearInterval(player.lev2Interval)
         }
     },500)
 }
-
-//Start the game
-setCharacterName()
-evaluateCharacter()
-
 function gumAnimation(){
     let gumCount = 0
     player.gumInterval = setInterval(function(){
@@ -201,6 +206,35 @@ function gumAnimation(){
             clearInterval(player.gumInterval)
         }
     },500)
+
 }
+
+// function levelUp(){
+// if (player.age === 3){
+//         //store new button in variable
+//     var workButton = document.createElement('button')
+//     //create text node for the text
+//     var workText = document.createTextNode('Work')
+//     //arrach new trest to new element
+//     workButton.appendChild(workText)
+//     //set the position on the page by creating a new var for the positon
+//     actionsEl.appendChild(workButton)
+
+//     var moneyMetric = document.createElement('div')
+//     var moneyText = document.createTextNode('Money: ')
+//     moneyMetric.appendChild(moneyText)
+//     moneyMetric.setAttribute('class', 'substat')
+//     statsEl.appendChild(moneyMetric)
+//     }   
+// }
+
+
+//Start the game
+setCharacterName()
+evaluateCharacter()
+
+
+
+
 
 

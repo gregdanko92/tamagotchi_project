@@ -3,16 +3,31 @@ font-family: 'Courier New', Courier, monospace;
 background-color: lightgray;
 display: flex;
 flex-flow: column;
+width: 50%;
+height: 100%;
+margin: auto;
+
 }
 #stats {
     display:flex;
     flex-flow: row wrap;
     color:whitesmoke;
-    padding:20px 20px 20px 20px;
+    padding:10px 10px 10px 10px;
+    background-color: grey;
+    font-weight:bolder;
+    border-radius: 20px;
+    
+}
+#actions {
+    display:flex;
+    flex-flow: row wrap;
+    color:whitesmoke;
+    padding:10px 10px 10px 10px;
     background-color: grey;
     font-weight:bolder;
     border-radius: 20px;
 }
+
 .substat {
     margin: auto;
     background-color:#44c767;
@@ -31,15 +46,11 @@ flex-flow: column;
     
     
 }
-.panels {
-    display: flex;
-    flex-flow: row wrap;
-    text-align: center;
-}
+
 h1 {
     text-align: center;
     text-shadow: lightslategray;
-    font-size: 50px;
+    font-size: 25px;
 }
 #character-box {
     background-color:whitesmoke;
@@ -49,7 +60,7 @@ h1 {
     box-sizing: border-box;
     height:500px;
     width: 50%;
-    margin: 30px auto ;
+    margin: auto ;
 
 }
 button {
