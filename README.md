@@ -1,23 +1,23 @@
-072021 : tomagotchi game
-User story:
+# Tamagotchi Project
+User stories:
+1. User navigates to game page, is prompted to enter a name
+2. name will display at the top of the page
+3. In the status bar, the character's metrics will be displayed
+    - Age, increasing every ten seconds, also the benchmark for new levels
+    - Boredom, Sleepiness, and Hunger, all increment 1 unit as age increases. If any of these reach 10, the character dies
+4. At the bottom is the Action panel, which contains buttons for various actions that can be taken. Depending on the action, the metrics will change accordingly.
+    - Feed: displays hot dog eating animation, decreases hunger, increases sleepiness
+    - Entertain: displays music animation, decreases boredom, increases hunger
+    - Sleep: displays sleep animation, descreases sleepiness, increases boredom. 
+    - Chew gum: displays gum chewing animation, does not affect any of the metrics
+5. At age 3, the character proceeds to level two, which brings in the work and spend buttons, as well as the money metric.
+    - The work function yields 2 money points, which then can be used to decrease sleepiness and boredom, at the cost of one point each. Although working does increase both of these metrics
+    - Zeroing out on the money metric also causes the character to die.
+    - Work and Spend each have thier own associated animations
+
+Technology Used:
+HTML/CSS/JS
 
 
-1. User navigates to opening page:
-    - On opening page, user creates a character by choosing a name and selecting one of three available choices by clicking on an avatar
-        - box highlights the choice selected
-    - Upon clicking the submission button, used is taken to the Gameplay page
-2. Gameplay page
-    - Character stats are displayed at the top of the page 
-        - Stats include:
-            - Age: changes every 10 seconds, decreases the other stats in the process
-            - Hunger Level: Can be decreased with the Feed Action
-            - Sleepiness Level: Can be decreased with the Sleep Action
-            - Boredom Level: can be decreased with the Entertain Action
-    - Character is displayed in the center of gregthe page
-    - User Actions are displayed at the bottom of the page
-        - Feed: Decreases Hunger, increases Sleepiness
-        - Sleep: Decreases Sleepiness, increases Hunger
-        - Entertain: Deceases boredom, increases both sleepiness and Hunger
-    - If the Stats exceed 10 points, the character dies and the game is over
-        - Game over screen appears with the dead character and the score
-        
+Wireframe:
+/Users/gregdanko/sei/w3/project_0/tamagotchi_project/images/wireframe.jpeg
