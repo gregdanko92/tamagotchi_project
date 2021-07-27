@@ -258,7 +258,7 @@ function spendAnimation(){
         else if (spendCount ===8){
             imageEl.src = defaultImage
             bodyEl.style.backgroundColor = 'aquamarine'
-            characterBoxEl.style.backgroundColor = 'darkgreen'
+            characterBoxEl.style.backgroundColor = 'aquamarine'
             clearInterval(player.spendInterval)
         }
 
