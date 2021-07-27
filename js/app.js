@@ -14,6 +14,7 @@ const actionsEl =document.getElementById('actions')
 const statsEl = document.getElementById('stats')
 const bodyEl = document.querySelector('body')
 const characterBoxEl = document.querySelector('#character-box')
+const resetButtonEl = document.getElementById('reset')
 
 
 
@@ -48,8 +49,13 @@ feedEl.addEventListener('click', handleFeedClick)
 sleepEl.addEventListener('click', handleSleepClick)
 entertainEl.addEventListener('click', handleEntertainClick)
 gumEl.addEventListener('click',handleChewGumClick)
+resetButtonEl.addEventListener('click', handleResetClick)
 
 // F U N C T I O N S
+
+function handleResetClick(){
+    location.reload()
+}
 
 function setCharacterName(){
     nameEl.textContent = enteredName
