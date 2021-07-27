@@ -47,6 +47,13 @@ max-width: 800px;
     
 }
 
+#gum {
+    background-color:rgb(179, 91, 106);
+    border-color:pink;
+    color:pink;
+
+}
+
 #reset {
     color:white;
     background-color:tomato;
