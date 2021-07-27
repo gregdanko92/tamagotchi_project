@@ -16,25 +16,26 @@ const statsEl = document.getElementById('stats')
 //Classes
 
 class Character {
-    constructor(name, age, hungerLevel, sleepinessLevel, boredomLevel,isAlive){
+    constructor(name, age, hungerLevel, sleepinessLevel, boredomLevel,moneyLevel){
         this.name = name
         this.age = age
         this.hungerLevel = hungerLevel
         this.sleepinessLevel = sleepinessLevel
         this.boredomLevel = boredomLevel
-        this.isAlive = isAlive
+        this.moneyLevel = moneyLevel
         this.interval = null
         this.interval2 = null
         this.sleepInterval = null
         this.eatInterval = null
         this.lev2Interval = null
         this.gumInterval = null
-        
+        this.interval3 = null
+        this.workInterval = null
     }
 }
 
 //Player object
-const player = new Character(enteredName, 0,0,0,0,true,null)
+const player = new Character(enteredName,0,0,0,0,0)
 
 let count = 0
 defaultImage = "images/resting.jpeg"
@@ -58,7 +59,9 @@ function setCharacterName(){
             increaseBoredom()
             increaseSleepiness()
         }
+
     },1000)
+
 }
 function handleFeedClick(){
     eatAnimation()
@@ -91,32 +94,21 @@ function increaseSleepiness(){
 function increaseBoredom(){
     player.boredomLevel++
     boredomEl.textContent = 'Boredom: ' + player.boredomLevel
-    
+}
+function decreaseMoney(){
+    player.moneyLevel--
+    moneyEl.textContent = 'Money: ' + player.moneyLevel
 }
 function evaluateCharacter(){
-    if (player.age === 1){
-        var workButton = document.createElement('button')
-    //create text node for the text
-    var workText = document.createTextNode('Work')
-    //arrach new trest to new element
-    workButton.appendChild(workText)
-    //set the position on the page by creating a new var for the positon
-    actionsEl.appendChild(workButton)
-
-    var moneyMetric = document.createElement('div')
-    var moneyText = document.createTextNode('Money: ')
-    moneyMetric.appendChild(moneyText)
-    moneyMetric.setAttribute('class', 'substat')
-    statsEl.appendChild(moneyMetric)
-}
     player.interval2 = setInterval(function (){
         let count2 = 0
         count2++;
-            if(player.hungerLevel >=5 || player.sleepinessLevel>=5 || player.boredomLevel>=5){
+            if(player.hungerLevel >=10 || player.sleepinessLevel>=10 || player.boredomLevel>=10|| player.moneyLevel < 0){
                 console.log("dead ")
                 nameEl.textContent = `${enteredName} has died at ${player.age}`
                 defaultImage="images/dead.jpeg"
                 imageEl.src = defaultImage
+                player.isAlive = false
 
                 clearInterval(player.interval2)
                 clearInterval(player.interval)
@@ -124,11 +116,9 @@ function evaluateCharacter(){
             
     },500)
 }
-    
 function handleChewGumClick(){
     gumAnimation()
 }
-
 function sleepAnimation(){
     let sleepCount = 0
     player.sleepInterval = setInterval(function(){
@@ -173,7 +163,6 @@ function funAnimation(){
         }
     },500)
 }
-
 function lev2Animation(){
     let lev2Count = 0
     player.lev2Interval = setInterval(function(){
@@ -208,30 +197,133 @@ function gumAnimation(){
     },500)
 
 }
+function workAnimation(){
+    let workCount = 0
+    player.workInterval = setInterval(function(){
+        workCount ++
+        if (workCount === 1){
+            imageEl.src = "images/work1.jpeg"
+        }
+        else if (workCount === 2){
+            imageEl.src = "images/work2.jpeg"
+        }
+        else if (workCount === 3){
+            imageEl.src = "images/work3.jpeg"
+        }else if (workCount ===4){
+            imageEl.src = defaultImage
+            clearInterval(player.workInterval)
+        }
 
-// function levelUp(){
-// if (player.age === 3){
-//         //store new button in variable
-//     var workButton = document.createElement('button')
-//     //create text node for the text
-//     var workText = document.createTextNode('Work')
-//     //arrach new trest to new element
-//     workButton.appendChild(workText)
-//     //set the position on the page by creating a new var for the positon
-//     actionsEl.appendChild(workButton)
+    },500)
+}
 
-//     var moneyMetric = document.createElement('div')
-//     var moneyText = document.createTextNode('Money: ')
-//     moneyMetric.appendChild(moneyText)
-//     moneyMetric.setAttribute('class', 'substat')
-//     statsEl.appendChild(moneyMetric)
-//     }   
-// }
+function spendAnimation(){
+    let spendCount = 0
+    player.spendInterval = setInterval(function(){
+        spendCount ++
+        if (spendCount === 1){
+            imageEl.src = "images/spend1.jpeg"
+        }
+        else if (spendCount === 2){
+            imageEl.src = "images/spend2.jpeg"
+        }
+        else if (spendCount === 3){
+            imageEl.src = "images/spend3.jpeg"
+        }
+        else if (spendCount === 4){
+            imageEl.src = "images/spend4.jpeg"
+        }
+        else if (spendCount === 5){
+            imageEl.src = "images/spend5.jpeg"
+        }
+        else if (spendCount === 6){
+            imageEl.src = "images/spend6.jpeg"
+        }
+        else if (spendCount === 7){
+            imageEl.src = "images/spend7.jpeg"
+        }
+        else if (spendCount ===8){
+            imageEl.src = defaultImage
+            clearInterval(player.spendInterval)
+        }
 
+    },500)
+}
+
+function levelUp(){
+    player.interval3 = setInterval(function (){
+        let count2 = 0
+        count2++;
+            if(player.age === 3){
+                lev2Animation()
+                //the work buton
+                var workEl = document.createElement('button')
+                var workText = document.createTextNode('Work')
+                workEl.appendChild(workText)
+                actionsEl.appendChild(workEl)
+                clearInterval(player.interval3)
+
+
+                //the metric
+                var moneyEl = document.createElement('div')
+                var moneyText = document.createTextNode('Money: ')
+                moneyEl.appendChild(moneyText)
+                moneyEl.setAttribute('class', 'substat')
+                statsEl.appendChild(moneyEl)
+                
+                workEl.addEventListener('click', handleWorkClick)
+
+                //the spend button
+
+                var spendEl = document.createElement('button')
+                var spendText = document.createTextNode('Spend')
+                spendEl.appendChild(spendText)
+                actionsEl.appendChild(spendEl)
+                clearInterval(player.interval3)
+
+                //spend event listener
+
+                spendEl.addEventListener('click', handleSpendClick)
+
+                function handleSpendClick(){
+                    spendAnimation()
+                    decreaseMoney()
+                    player.sleepinessLevel = player.sleepinessLevel -1
+                    sleepinessEl.textContent = 'Sleepiness: ' + player.sleepinessLevel
+                    player.boredomLevel--
+                    boredomEl.textContent = 'Boredom: ' + player.boredomLevel
+                }
+                function decreaseMoney(){
+                    player.moneyLevel--
+                    moneyEl.textContent = 'Money: ' + player.moneyLevel
+                }
+                function handleWorkClick(){
+                    workAnimation()
+                    increaseBoredom()
+                    increaseSleepiness()
+                    player.moneyLevel = player.moneyLevel + 2
+                    moneyEl.textContent = 'Money: ' + player.moneyLevel
+                }
+
+
+
+                
+                    
+                
+
+
+
+            } 
+
+
+            
+    },500)
+}
 
 //Start the game
 setCharacterName()
 evaluateCharacter()
+levelUp()
 
 
 
