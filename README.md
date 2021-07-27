@@ -20,4 +20,4 @@ HTML/CSS/JS
 
 
 Wireframe:
-/Users/gregdanko/sei/w3/project_0/tamagotchi_project/images/wireframe.jpeg
+<img src= "images/wireframe.jpeg">
