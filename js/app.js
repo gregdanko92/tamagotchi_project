@@ -13,6 +13,7 @@ const gumEl = document.getElementById('gum')
 const actionsEl =document.getElementById('actions')
 const statsEl = document.getElementById('stats')
 const bodyEl = document.querySelector('body')
+const characterBoxEl = document.querySelector('#character-box')
 
 
 
@@ -130,10 +131,12 @@ function sleepAnimation(){
         sleepCount++
         imageEl.src ="images/sleep.jpeg"
         bodyEl.style.backgroundColor = 'black'
+        characterBoxEl.style.backgroundColor = 'black'
         if(sleepCount === 3){
             clearInterval(player.sleepInterval)
             imageEl.src = defaultImage
-            bodyEl.style.backgroundColor = 'lightgray'
+            bodyEl.style.backgroundColor = 'aquamarine'
+            characterBoxEl.style.backgroundColor = 'aquamarine'
         }
     },500)
 }
@@ -175,6 +178,7 @@ function funAnimation(){
 function gumAnimation(){
     let gumCount = 0
     bodyEl.style.backgroundColor = 'pink'
+    characterBoxEl.style.backgroundColor = 'pink'
     player.gumInterval = setInterval(function(){
         gumCount++
         if(gumCount === 1){
@@ -192,7 +196,8 @@ function gumAnimation(){
         }else if (gumCount ===6){
             imageEl.src = defaultImage
             clearInterval(player.gumInterval)
-            bodyEl.style.backgroundColor = 'lightgray'
+            bodyEl.style.backgroundColor = 'aquamarine'
+            characterBoxEl.style.backgroundColor = 'aquamarine'
         }
     },500)
 
@@ -222,6 +227,7 @@ function spendAnimation(){
     player.spendInterval = setInterval(function(){
         spendCount ++
         bodyEl.style.backgroundColor = 'darkgreen'
+        characterBoxEl.style.backgroundColor = 'darkgreen'
         if (spendCount === 1){
             imageEl.src = "images/spend1.jpeg"
         }
@@ -246,6 +252,7 @@ function spendAnimation(){
         else if (spendCount ===8){
             imageEl.src = defaultImage
             bodyEl.style.backgroundColor = 'aquamarine'
+            characterBoxEl.style.backgroundColor = 'darkgreen'
             clearInterval(player.spendInterval)
         }
 
