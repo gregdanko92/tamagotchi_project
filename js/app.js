@@ -12,6 +12,7 @@ const imageEl = document.querySelector('img')
 const gumEl = document.getElementById('gum')
 const actionsEl =document.getElementById('actions')
 const statsEl = document.getElementById('stats')
+const bodyEl = document.querySelector('body')
 
 //Classes
 
@@ -33,7 +34,6 @@ class Character {
         this.workInterval = null
     }
 }
-
 //Player object
 const player = new Character(enteredName,0,0,0,0,0)
 
@@ -74,6 +74,9 @@ function handleSleepClick(){
     sleepAnimation()
     player.sleepinessLevel = player.sleepinessLevel -1
     sleepinessEl.textContent = 'Sleepiness: ' + player.sleepinessLevel
+    
+
+
     increaseBoredom()
 
 }
@@ -124,9 +127,11 @@ function sleepAnimation(){
     player.sleepInterval = setInterval(function(){
         sleepCount++
         imageEl.src ="images/sleep.jpeg"
+        bodyEl.style.backgroundColor = 'black'
         if(sleepCount === 3){
             clearInterval(player.sleepInterval)
             imageEl.src = defaultImage
+            bodyEl.style.backgroundColor = 'lightgray'
         }
     },500)
 }
@@ -176,6 +181,7 @@ function lev2Animation(){
 }
 function gumAnimation(){
     let gumCount = 0
+    bodyEl.style.backgroundColor = 'pink'
     player.gumInterval = setInterval(function(){
         gumCount++
         if(gumCount === 1){
@@ -193,6 +199,7 @@ function gumAnimation(){
         }else if (gumCount ===6){
             imageEl.src = defaultImage
             clearInterval(player.gumInterval)
+            bodyEl.style.backgroundColor = 'lightgray'
         }
     },500)
 
@@ -216,7 +223,6 @@ function workAnimation(){
 
     },500)
 }
-
 function spendAnimation(){
     let spendCount = 0
     player.spendInterval = setInterval(function(){
@@ -247,9 +253,8 @@ function spendAnimation(){
             clearInterval(player.spendInterval)
         }
 
-    },500)
+    },450)
 }
-
 function levelUp(){
     player.interval3 = setInterval(function (){
         let count2 = 0
