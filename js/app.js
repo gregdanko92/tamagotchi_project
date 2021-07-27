@@ -1,6 +1,6 @@
 //G L O B A L S
-const feedEl = document.getElementById('feed')
 const hungerEl = document.getElementById('hunger')
+const feedEl = document.getElementById('feed')
 const sleepEl = document.getElementById('sleep')
 const sleepinessEl = document.getElementById('sleepiness')
 const entertainEl = document.getElementById('entertain')
@@ -13,6 +13,8 @@ const gumEl = document.getElementById('gum')
 const actionsEl =document.getElementById('actions')
 const statsEl = document.getElementById('stats')
 const bodyEl = document.querySelector('body')
+
+
 
 //Classes
 
@@ -197,6 +199,7 @@ function gumAnimation(){
 }
 function workAnimation(){
     let workCount = 0
+    
     player.workInterval = setInterval(function(){
         workCount ++
         if (workCount === 1){
@@ -242,7 +245,7 @@ function spendAnimation(){
         }
         else if (spendCount ===8){
             imageEl.src = defaultImage
-            bodyEl.style.backgroundColor = 'lightgray'
+            bodyEl.style.backgroundColor = 'aquamarine'
             clearInterval(player.spendInterval)
         }
 
@@ -252,7 +255,8 @@ function levelUp(){
     player.interval3 = setInterval(function (){
         let count2 = 0
         count2++;
-            if(player.age === 3){
+        if(player.age === 3){
+                bodyEl.style.backgroundColor = 'aquamarine'
                 //the work buton
                 var workEl = document.createElement('button')
                 var workText = document.createTextNode('Work')
