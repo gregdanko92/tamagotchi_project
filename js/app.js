@@ -167,18 +167,9 @@ function funAnimation(){
             imageEl.src = defaultImage
         }
     },500)
+
 }
-function lev2Animation(){
-    let lev2Count = 0
-    player.lev2Interval = setInterval(function(){
-        lev2Count++
-        imageEl.src ="images/Level2.jpeg"
-        if(lev2Count === 1){
-            imageEl.src = defaultImage
-            clearInterval(player.lev2Interval)
-        }
-    },500)
-}
+
 function gumAnimation(){
     let gumCount = 0
     bodyEl.style.backgroundColor = 'pink'
@@ -227,6 +218,7 @@ function spendAnimation(){
     let spendCount = 0
     player.spendInterval = setInterval(function(){
         spendCount ++
+        bodyEl.style.backgroundColor = 'darkgreen'
         if (spendCount === 1){
             imageEl.src = "images/spend1.jpeg"
         }
@@ -250,6 +242,7 @@ function spendAnimation(){
         }
         else if (spendCount ===8){
             imageEl.src = defaultImage
+            bodyEl.style.backgroundColor = 'lightgray'
             clearInterval(player.spendInterval)
         }
 
@@ -260,7 +253,6 @@ function levelUp(){
         let count2 = 0
         count2++;
             if(player.age === 3){
-                lev2Animation()
                 //the work buton
                 var workEl = document.createElement('button')
                 var workText = document.createTextNode('Work')
