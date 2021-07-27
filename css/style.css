@@ -16,6 +16,7 @@ max-width: 800px;
     background-color: grey;
     font-weight:bolder;
     border-radius: 28px;
+    margin-top: 5%;
     
 }
 #actions {
@@ -26,6 +27,7 @@ max-width: 800px;
     background-color: grey;
     font-weight:bolder;
     border-radius: 28px;
+    margin-bottom: 5%;
 }
 
 .substat {
